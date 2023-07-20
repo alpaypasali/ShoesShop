@@ -1,0 +1,129 @@
+﻿@model ShopShop.Models.ShippingDetails
+
+
+
+@{
+    ViewData["Title"] = "CheckOut";
+}
+<nav class="bg-white">
+    <div class="d-flex align-items-center">
+        <!-- Logo Section -->
+        <div class="logo"> <a href="/Anasayfa/Sayfa1" class="text-uppercase">shop</a> </div>
+    
+    </div>
+</nav>
+
+<!-- Header Section -->
+<header>
+    <!-- Progress Section -->
+    <div class="d-flex justify-content-center align-items-center pb-3">
+        <div class="px-sm-5 px-2 ">SHOPPING CART  </div>
+        <div class="px-sm-5 px-2  active">CHECKOUT <span class="fas fa-check"></span></div>
+        <div class="px-sm-5 px-2">FINISH</div>
+    </div>
+    <!-- Progress Bar -->
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+
+</header>
+<!-- Main row with some styling -->
+<div class="row mt-3 mx-3" style="margin-top:25px ;">
+    <!-- First column -->
+    <div class="col-md-3">
+        <!-- First text-center div with icon and some text -->
+        <div style="margin-top: 50px; margin-left: 10px;" class="text-center">
+            <!-- Animated icon -->
+            <i id="animationDemo" data-mdb-animation="slide-right" data-mdb-toggle="animation"
+               data-mdb-animation-reset="true" data-mdb-animation-start="onScroll"
+               data-mdb-animation-on-scroll="repeat" class="fas fa-3x fa-shipping-fast text-white"></i>
+            <!-- Heading -->
+            <h3 class="mt-3 text-white">Welcome</h3>
+            <!-- Paragraph text -->
+            <p class="white-text">You are 30 seconds away from completing your order!</p>
+        </div>
+        <!-- Second text-center div with a button -->
+        <div class="text-center">
+            <!-- Button to go back -->
+
+            <div class="text-center">
+                <!-- Button to go back -->
+                <a href="/Sepetim" class="btn btn-white btn-rounded back-button">Go back</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- Second column -->
+    <div class="col-md-9 justify-content-center">
+        <!-- Card container -->
+        <div class="card card-custom pb-4">
+            <!-- Card body -->
+            <div class="card-body mt-0 mx-5">
+                <!-- Text center with heading -->
+                <div class="text-center mb-3 pb-2 mt-3">
+                    <!-- Heading -->
+                    <h4 style="color: #495057 ;">Delivery Details</h4>
+                </div>
+
+                <form asp-controller="Cart" asp-action="CheckOut" method="post" class="mb-0">
+                    <div class="row mb-4">
+                        <!-- UserName Input -->
+                        <div class="form-group">
+                            <input type="text" asp-for="UserName" class="form-control" readonly value="@User.Identity.Name">
+                            <label>User Name</label>
+                        </div>
+                        <!-- Address Title Input -->
+                        <div class="col">
+                            <div class="form-outline">
+                               
+                                <label class="form-label" for="AddressTitle">Address Title</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <!-- City Input -->
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" asp-for="City" class="form-control input-custom" />
+                                <label class="form-label" for="City">City</label>
+                            </div>
+                        </div>
+                        <!-- PostCode Input -->
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" asp-for="PostCode" class="form-control input-custom" />
+                                <label class="form-label" for="PostCode">Post Code</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <!-- Address Input -->
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" asp-for="Address" class="form-control input-custom" />
+                                <label class="form-label" for="Address">Address</label>
+                            </div>
+                        </div>
+                        <!-- Region Input -->
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" asp-for="Region" class="form-control input-custom" />
+                                <label class="form-label" for="Region">Region</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- District Input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" asp-for="District" class="form-control input-custom" />
+                        <label class="form-label" for="District">District</label>
+                    </div>
+
+                    <!-- Place Order Button -->
+                    <div class="float-end ">
+                        <button href ="/Cart/Completed" type="submit" class="btn btn-primary btn-rounded" style="background-color: #0062CC ;">Place order</button>
+                    </div>
+                </form>

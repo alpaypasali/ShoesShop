@@ -1,0 +1,34 @@
+﻿@model ShoeShop.Entities.Concrete.Order
+
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Order Details</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Image</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <!-- Other details -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderItem in Model.OrderItems)
+        {
+            <tr>
+                <td>@orderItem.Product.Name</td>
+                <td>
+                    <img src="@orderItem.Product.ImageUrl" alt="@orderItem.Product.Name" width="100" />
+                </td>
+                <td>@orderItem.Price</td>
+                <td>@orderItem.Quantity</td>
+                <!-- Other details -->
+            </tr>
+        }
+    </tbody>
+</table>

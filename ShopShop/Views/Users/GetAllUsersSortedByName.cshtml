@@ -1,0 +1,52 @@
+﻿@using ShoeShop.Entities.Concrete
+@model IList<User>
+
+
+@{
+    ViewData["Title"] = "GetAllUsersSortedByName";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Role</th>
+            <th>Change Role</th>
+            <th>Delete</th> <!-- Yeni sütun -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.ID</td>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>@user.Address</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Role</td>
+                <td>
+                    <form asp-action="ChangeUserRole" method="post">
+                        <input type="hidden" name="username" value="@user.FullName" />
+                        <input type="text" name="newRole" placeholder="Enter new role" required />
+                        <button type="submit">Change Role</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="DeleteUser" method="post">
+                        <input type="hidden" name="username" value="@user.FullName" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="Users/AddUser" class="btn btn-primary">Add User</a>

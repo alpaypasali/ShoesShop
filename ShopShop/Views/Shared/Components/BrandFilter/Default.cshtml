@@ -1,0 +1,38 @@
+﻿@using ShoeShop.Entities.Concrete
+@model IEnumerable<Brand>
+
+<div style="border: 0.2px rgb(200,200,200) solid;  border-color: orangered;">
+    <p style="font-weight: 600; color: white;background-color: orangered; padding-left: 10px;">Brand</p>
+    <div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
+        @foreach (var brd in Model)
+        {
+            if (ViewBag.CurrentBrandID == brd.ID)
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-brandID="@brd.ID" asp-route-colorID="@ViewBag.CurrentColorID"
+           asp-route-genderID="@ViewBag.CurrentGenderID" asp-route-catName="@ViewBag.CurrentCategory"
+           style="color: orangered; margin-left: 10px; text-decoration: none; font-weight: bold;">> @brd.Name</a>
+                <br />
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-brandID="@brd.ID" asp-route-colorID="@ViewBag.CurrentColorID"
+           asp-route-genderID="@ViewBag.CurrentGenderID" asp-route-catName="@ViewBag.CurrentCategory"
+           style="color: black; margin-left: 10px; text-decoration: none;  font-weight: 400;">@brd.Name</a>
+                <br />
+            }
+        }
+        @if (ViewBag.CurrentBrandID == -1 || ViewBag.CurrentBrandID == null)
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-brandID="-1" asp-route-colorID="@ViewBag.CurrentColorID"
+           asp-route-genderID="@ViewBag.CurrentGenderID" asp-route-catName="@ViewBag.CurrentCategory"
+           style="color: orangered; margin-left: 10px; text-decoration: none; font-weight: bold;">Show All</a>
+        }
+        else
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-brandID="-1" asp-route-colorID="@ViewBag.CurrentColorID"
+           asp-route-genderID="@ViewBag.CurrentGenderID" asp-route-catName="@ViewBag.CurrentCategory"
+           style="color: black; margin-left: 10px; text-decoration: none;  font-weight: 400;">Show All</a>
+        }
+
+    </div>
+</div>

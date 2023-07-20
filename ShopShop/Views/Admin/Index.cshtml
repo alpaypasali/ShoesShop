@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+   
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active bg-primary text-white" id="active1-tab" data-toggle="tab" href="#active1" role="tab" aria-controls="active1" aria-selected="true">Brand Operations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-success text-white" id="active2-tab" data-toggle="tab" href="#active2" role="tab" aria-controls="active2" aria-selected="false">Category Operations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-danger text-white" id="active3-tab" data-toggle="tab" href="#active3" role="tab" aria-controls="active3" aria-selected="false">Stock Operations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-warning text-dark" id="active4-tab" data-toggle="tab" href="#active4" role="tab" aria-controls="active4" aria-selected="false">Products Operations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-warning text-dark" id="active5-tab" data-toggle="tab" href="#active5" role="tab" aria-controls="active5" aria-selected="false">Users Operations</a>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="active1" role="tabpanel" aria-labelledby="active1-tab">
+                    <h5 class="card-title">Brand</h5>
+                    <a href="/Brand/Show" class="btn btn-primary">Show All Brands</a>
+                    <a href="/Brand/Create" class="btn btn-primary">Add Brand</a>
+                </div>
+                <div class="tab-pane fade" id="active2" role="tabpanel" aria-labelledby="active2-tab">
+                    <h5 class="card-title">Category</h5>
+                    <a href="/Category/Create" class="btn btn-primary">Add Category</a>
+                    <a href="/Kategoriler" class="btn btn-primary">Show Category</a>
+                </div>
+                <div class="tab-pane fade" id="active3" role="tabpanel" aria-labelledby="active3-tab">
+                    <h5 class="card-title">Stock</h5>
+                    <a href="/Stock/Create" class="btn btn-primary">Create Stock</a>
+                </div>
+                <div class="tab-pane fade" id="active4" role="tabpanel" aria-labelledby="active4-tab">
+                    <h5 class="card-title">Products</h5>
+                    
+                    <a href="/Products/Create" class="btn btn-primary">Create Products</a>
+                    <a href="/Products/Show" class="btn btn-primary">Show Products</a>
+                </div>
+                <div class="tab-pane fade" id="active5" role="tabpanel" aria-labelledby="active5-tab">
+                    <h5 class="card-title">Users</h5>
+
+                    <a href="/Users/AddUser" class="btn btn-primary">Add User</a>
+                    <a href="/Users/GetAllUsersSortedByName" class="btn btn-primary">Show Users</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

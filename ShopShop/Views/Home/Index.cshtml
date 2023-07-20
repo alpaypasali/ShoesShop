@@ -1,0 +1,85 @@
+﻿@using ShoeShop.Dtos.Concrete
+@model IEnumerable<ProductDto>
+
+
+
+<div class="container-md">
+    <div class="swiper mySwiper mt-5">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/images/banner.jpg" class="img-fluid" /></div>
+            <div class="swiper-slide"><img src="https://helios.production.bsd.coremedia.cloud/resource/image/1425938/4x1/1600/400/668ee945a936dac2f2a64ebf0d676713/8C586EB902A5E9292254BE590E422350/23ss-anniversaryoftheicons-ps-1019662-005-169-high-res-1-.jpg" class="img-fluid" /></div>
+            <div class="swiper-slide"><img src="https://www.saucony.com/on/demandware.static/-/Sites-saucony_us-Library/default/dwf2b4bf69/content/seasonal-content/homepage/2023/05/31/primary-globalRunningDay-d.jpg" class="img-fluid" /></div>
+            <div class="swiper-slide"><img src="https://floimages.mncdn.com/media/catalog/product/img/banners/22-04/21/5yenisezon.gif" class="img-fluid" /></div>
+            <div class="swiper-slide"><img src="https://floimages.mncdn.com/media/catalog/product/img/banners/22-04/28/1bayram.jpg" class="img-fluid" /></div>
+        </div>
+        <div class="swiper-button-next font-weight-bold p-5" style="color: orangered; border-radius: 50px;"></div>
+        <div class="swiper-button-prev font-weight-bold p-5" style="color: orangered; border-radius: 50px"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<div class="container-lg mt-3">
+    <div class="row">
+        <div class="col-3 mt-5">
+            <div class="">
+                @await Component.InvokeAsync("Menu")
+            </div>
+            <div class="">
+                @await Component.InvokeAsync("Gender")
+            </div>
+            <div class="">
+                @await Component.InvokeAsync("BrandFilter")
+            </div>
+            <div class="">
+                @await Component.InvokeAsync("ColorFilter")
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <partial name="_ProductCard" model="item" />
+                }
+            </div>
+            <ul class="pagination justify-content-center mt-3">
+                @for (var i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i==ViewBag.CurrentPage ? "active":"")">
+                        <a class="page-link " asp-action="Index" asp-route-page="@i" asp-route-catName="@ViewBag.CurrentCategory">@i</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $('.favorite').on('click', function () {
+                let pdtID = $(this).data('id');
+                $.ajax({
+                    url: '/Favorite/AddFavorite/' + pdtID,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        alertify.success(data);
+                    }
+                });
+            });
+
+            $('.unFav').on('click', function () {
+                let pdtId = $(this).data('id');
+                $.ajax({
+                    url: '/Favorite/RemoveFavorite/' + pdtId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        alertify.success(data);
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,39 @@
+﻿@using ShoeShop.Entities.Concrete
+@model IEnumerable<Category>
+
+<div class="" style="border: 0.2px rgb(200,200,200) solid; border-top-left-radius: 10px; border-top-right-radius: 10px; border-color: orangered;">
+    <p style="font-weight: 600; color: white;background-color: orangered; padding-left: 10px;
+              border-top-left-radius: 10px; border-top-right-radius: 10px;">Categories</p>
+    <div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px;">
+        @foreach (var cat in Model)
+        {
+            if (ViewBag.CurrentCategory == cat.Name)
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-catName="@cat.Name" asp-route-genderID="@ViewBag.CurrentGenderID"
+           asp-route-brandID="@ViewBag.CurrentBrandID" asp-route-colorID="@ViewBag.CurrentColorID"
+           style="color: orangered; margin-left: 10px; text-decoration: none; font-weight: bold;">> @cat.Name</a>
+                <br />
+            }
+            else
+            {
+                <a asp-controller="Home" asp-action="Index" asp-route-catName="@cat.Name" asp-route-genderID="@ViewBag.CurrentGenderID"
+           asp-route-brandID="@ViewBag.CurrentBrandID" asp-route-colorID="@ViewBag.CurrentColorID"
+           style="color: black; margin-left: 10px; text-decoration: none; font-weight: 400;">@cat.Name</a>
+                <br />
+            }
+        }
+
+        @if (ViewBag.CurrentCategory == "-1" || ViewBag.CurrentCategory == null)
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-genderID="@ViewBag.CurrentGenderID" asp-route-brandID="@ViewBag.CurrentBrandID"
+           asp-route-colorID="@ViewBag.CurrentColorID" asp-route-catName="-1"
+           style="color: orangered; margin-left: 10px; text-decoration: none; font-weight: bold;">Show All</a>
+        }
+        else
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-genderID="@ViewBag.CurrentGenderID" asp-route-brandID="@ViewBag.CurrentBrandID"
+           asp-route-colorID="@ViewBag.CurrentColorID" asp-route-catName="-1"
+           style="color: black; margin-left: 10px; text-decoration: none;  font-weight: 400;">Show All</a>
+        }
+    </div>
+</div>

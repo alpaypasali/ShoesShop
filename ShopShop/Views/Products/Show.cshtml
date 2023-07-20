@@ -1,0 +1,64 @@
+﻿@using ShoeShop.Entities.Concrete
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Show";
+}
+
+<div class="container-sm mt-5" style="width: 100%">
+    <h1 class="font-weight-bold" style="color: orangered">Products</h1>
+    <hr />
+    <p>
+        <a class="btn btn-success" asp-action="Create">Create Product</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    ID
+                </th>
+                <th class="text-center">
+                    Name
+                </th>
+                <th class="text-center">
+                    ImageUrl
+                </th>
+                <th class="text-center">
+                    Activity
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        @item.ID
+                    </td>
+                    <td class="text-center">
+                        @item.Name
+                    </td>
+                    <td class="text-center">
+                        <img src="@item.ImageUrl" class="img-thumbnail" alt="product image" style="width: 20%;" />
+                    </td>
+                    <td class="text-center d-flex flex-column align-items-center">
+                        <br />
+                        <a class="btn btn-warning" asp-controller="Products" asp-action="Edit" asp-route-id="@item.ID">Edit & Delete</a>
+                        <br />
+                        <a class="btn btn-outline-info" asp-controller="Products" asp-action="Details" asp-route-productID="@item.ID">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <ul class="pagination justify-content-center mt-3">
+        @for (var i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i==ViewBag.CurrentPage ? "active":"")">
+                <a class="page-link" asp-action="Show" asp-route-page="@i">@i</a>
+            </li>
+        }
+    </ul>
+
+</div>

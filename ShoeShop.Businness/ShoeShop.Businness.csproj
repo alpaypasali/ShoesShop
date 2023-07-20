@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShoeShop.DataAccess\ShoeShop.DataAccess.csproj" />
+    <ProjectReference Include="..\ShoeShop.Dtos\ShoeShop.Dtos.csproj" />
+    <ProjectReference Include="..\ShoeShop.Entities\ShoeShop.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,51 @@
+﻿@using ShoeShop.Dtos.Concrete
+@model StockDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h4 style="color: orangered;">Add Stock</h4>
+<hr />
+<div class="container-sm d-flex justify-content-center">
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                @if (ViewBag.State != null)
+                {
+                    if (ViewBag.State == true)
+                    {
+                        <div class="alert alert-success" style="width: 400px;">The stock added successfully.</div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success" style="width: 400px;">The stock added error.</div>
+                    }
+                }
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" style="width: 400px;">
+                    <label asp-for="ProductID" class="control-label font-weight-bold">Product</label>
+                    <select class="form-control" asp-for="ProductID" asp-items="ViewBag.Products"></select>
+                    <span asp-validation-for="ProductID" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 400px;">
+                    <label asp-for="SizeName" class="control-label font-weight-bold">Size</label>
+                    <input asp-for="SizeName" class="form-control" />
+                    <span asp-validation-for="SizeName" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width: 400px;">
+                    <label asp-for="StockNumber" class="control-label font-weight-bold">Stock</label>
+                    <input asp-for="StockNumber" class="form-control" />
+                    <span asp-validation-for="StockNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-success" style="width: 400px; font-weight: bold;" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

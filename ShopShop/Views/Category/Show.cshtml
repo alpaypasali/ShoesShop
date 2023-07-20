@@ -1,0 +1,42 @@
+﻿@using ShoeShop.Entities.Concrete
+@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="container-sm mt-5" style="width: 75%">
+    <h1 style="color: orangered; font-weight: bold">Category</h1>
+    <hr />
+    <p>
+        <a class="btn btn-success px-2 py-2" asp-action="Create">Create a new category</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Category Name
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning text-dark font-weight-bold" asp-controller="Category" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                        <a class="btn btn-danger font-weight-bold ml-3" asp-controller="Category" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

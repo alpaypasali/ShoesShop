@@ -1,0 +1,126 @@
+﻿@using ShopShop.Models
+@model IEnumerable<UserOrderModel>
+
+@{
+    ViewData["Title"] = "Order List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<h2>Order List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Order Number</th>
+            <th>Total</th>
+            <th>Order Date</th>
+            <th>Order State</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+               
+                <td>@item.OrderNumber</td>
+                <td>@item.Total</td>
+                <td>@item.OrderDate.ToString("MM/dd/yyyy")</td>
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <section id="mySection">
+                            <input type="hidden" class="order" value="@item.Id" />
+                            <select class="statusSelect">
+                                @if ((int)item.orderState == 0)
+                                {
+                                    <option value="0" id="option0_@item.orderState" selected>Waiting</option>
+                                }
+                                else
+                                {
+                                    <option value="0" id="option0_@item.orderState">Waiting</option>
+                                }
+
+                                @if ((int)item.orderState == 1)
+                                {
+                                    <option value="1" id="option1_@item.orderState" selected>Unpaid</option>
+                                }
+                                else
+                                {
+                                    <option value="1" id="option1_@item.orderState">Unpaid</option>
+                                }
+
+                                @if ((int)item.orderState == 2)
+                                {
+                                    <option value="2" id="option2_@item.orderState" selected>Completed</option>
+                                }
+                                else
+                                {
+                                    <option value="2" id="option2_@item.orderState">Completed</option>
+                                }
+                            </select>
+
+                        </section>
+                    </td>
+                    
+                }
+                else{
+
+                    <td>@item.orderState</td>
+                }
+                <td>
+                    <a class="btn btn-primary" href="/Users/OrderDetails?orderNumber=@item.OrderNumber">Siparis Detay</a>
+
+
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+
+    //$(document).ready(function () {
+
+    //var option2 = document.getElementById("option0_completed");
+    
+    //var option2 = document.getElementById("option0_completed");
+    //if (option2 != null) document.getElementById("option2_completed").selected = true;
+    //else {
+    //    option2 = document.getElementById("option0_waiting"); //unpaid
+    //    if (option2 != null) document.getElementById("option0_waiting").selected = true
+    //    else{
+    //        document.getElementById("option1_unpaid").selected = true;
+    //    }
+    //    }
+    //})
+
+</script>
+
+<script>
+        $(document).ready(function () {
+        $('.statusSelect').change(function () {
+                console.log("selam")
+                var status = $(this).val();
+            var orderId = $(this).parent().find('.order').val();;
+                //var url = 'cart/ChangeOrderStatus?orderId=' + orderId + "&OrderStatus="+status
+                var url = window.location.origin + "/Cart/ChangeOrderStatus";
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    data: { orderId: orderId, OrderStatus: status },
+                    success: function (response) {
+                        console.log(response);
+                    location.reload()
+                },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+</script>
